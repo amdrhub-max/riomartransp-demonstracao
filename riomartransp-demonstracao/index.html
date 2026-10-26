@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0A1633"></rect><text x="50" y="62" text-anchor="middle" font-family="Poppins,Arial,sans-serif" font-size="34" font-weight="600" fill="#E8571E">R<tspan fill="#FFFFFF">M</tspan></text></svg></template>
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#2E3440;font-family:'Poppins',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+*{box-sizing:border-box}
+a{color:#1F3FA0;text-decoration:none}
+a:hover{color:#16307D}
+input,select,textarea,button{font-family:inherit}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#FFFFFF">
+
+<!-- CABEÇALHO -->
+<header style="position:fixed;top:0;left:0;right:0;z-index:50;background:{{ headerBg }};backdrop-filter:blur(16px) saturate(1.6);-webkit-backdrop-filter:blur(16px) saturate(1.6);border-bottom:1px solid {{ headerLine }};box-shadow:{{ headerShadow }};transition:background 250ms ease, box-shadow 250ms ease">
+  <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px);height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="#topo" style="display:flex;align-items:center;flex-shrink:0">
+      <img src="assets/logo-riomar.webp" alt="Riomar Transportes" style="height:50px;width:auto;display:block">
+    </a>
+    <sc-if value="{{ navDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex;align-items:center;gap:clamp(20px,2.2vw,32px)">
+        <a href="#servicos" style="color:#1F3FA0;font-size:14.5px;font-weight:500;white-space:nowrap" style-hover="color:#0A1633">Serviços</a>
+        <a href="#frota" style="color:#1F3FA0;font-size:14.5px;font-weight:500;white-space:nowrap" style-hover="color:#0A1633">Frota</a>
+        <a href="#como-funciona" style="color:#1F3FA0;font-size:14.5px;font-weight:500;white-space:nowrap" style-hover="color:#0A1633">Como funciona</a>
+        <a href="#sobre" style="color:#1F3FA0;font-size:14.5px;font-weight:500;white-space:nowrap" style-hover="color:#0A1633">Sobre</a>
+        <a href="#contato" style="color:#1F3FA0;font-size:14.5px;font-weight:500;white-space:nowrap" style-hover="color:#0A1633">Contato</a>
+        <a href="https://wa.me/5521988650909?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener" style="background:#E8571E;color:#FFFFFF;font-size:14.5px;font-weight:600;padding:0 20px;height:44px;display:flex;align-items:center;gap:8px;border-radius:8px;white-space:nowrap" style-hover="background:#D44C15;color:#FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg><span>Solicitar orçamento</span></a>
+      </nav>
+    </sc-if>
+    <sc-if value="{{ navMobile }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ toggleMenu }}" aria-label="Abrir menu" style="width:44px;height:44px;border:1px solid #D2D8E2;background:transparent;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;padding:0">
+        <span style="display:block;width:18px;height:1.5px;background:#1F3FA0"></span>
+        <span style="display:block;width:18px;height:1.5px;background:#1F3FA0"></span>
+        <span style="display:block;width:18px;height:1.5px;background:#1F3FA0"></span>
+      </button>
+    </sc-if>
+  </div>
+  <sc-if value="{{ menuVisible }}" hint-placeholder-val="{{ false }}">
+    <nav style="display:flex;flex-direction:column;padding:8px 20px 24px;border-top:1px solid #E3E6EC">
+      <a href="#servicos" onClick="{{ closeMenu }}" style="color:#1F3FA0;font-size:16px;font-weight:500;height:52px;display:flex;align-items:center;border-bottom:1px solid #E3E6EC">Serviços</a>
+      <a href="#frota" onClick="{{ closeMenu }}" style="color:#1F3FA0;font-size:16px;font-weight:500;height:52px;display:flex;align-items:center;border-bottom:1px solid #E3E6EC">Frota</a>
+      <a href="#como-funciona" onClick="{{ closeMenu }}" style="color:#1F3FA0;font-size:16px;font-weight:500;height:52px;display:flex;align-items:center;border-bottom:1px solid #E3E6EC">Como funciona</a>
+      <a href="#sobre" onClick="{{ closeMenu }}" style="color:#1F3FA0;font-size:16px;font-weight:500;height:52px;display:flex;align-items:center;border-bottom:1px solid #E3E6EC">Sobre</a>
+      <a href="#contato" onClick="{{ closeMenu }}" style="color:#1F3FA0;font-size:16px;font-weight:500;height:52px;display:flex;align-items:center;border-bottom:1px solid #E3E6EC">Contato</a>
+      <a href="https://wa.me/5521988650909?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener" onClick="{{ closeMenu }}" style="margin-top:20px;background:#E8571E;color:#FFFFFF;font-size:15px;font-weight:600;height:50px;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg><span>Solicitar orçamento</span></a>
+    </nav>
+  </sc-if>
+</header>
+
+<!-- SEÇÃO 1 — HERO -->
+<section id="topo" data-screen-label="01 Hero" style="position:relative;background:#0A1633;color:#FFFFFF;min-height:{{ heroMinH }};padding:{{ hm.pad }};overflow:hidden;display:flex;align-items:{{ heroAlign }}">
+  <sc-if value="{{ heroDesk }}" hint-placeholder-val="{{ true }}"><img src="assets/hero-riomar.webp" alt="Frota Riomar — carros executivos e van — na orla do Rio de Janeiro ao entardecer" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ heroPos }};display:block"></sc-if><sc-if value="{{ heroMob }}" hint-placeholder-val="{{ false }}"><img src="assets/hero-riomar-mobile-v2.webp" alt="Frota Riomar — carros executivos e van — na orla do Rio de Janeiro ao entardecer" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ heroPos }};display:block"></sc-if>
+  <div aria-hidden="true" style="position:absolute;inset:0;background:{{ heroScrim }};pointer-events:none"></div>
+  <div style="position:relative;width:100%;max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(40px,5vw,72px);align-items:center">
+    <div data-reveal="" style="flex:0 1 620px;min-width:0;display:flex;flex-direction:column;align-items:flex-start">
+      <div style="font-size:12.5px;letter-spacing:3px;font-weight:500;color:#E8571E;text-transform:uppercase">Rio de Janeiro — RJ</div>
+      <h1 style="margin:{{ hm.h1m }};font-size:{{ hm.h1fs }};line-height:1.18;font-weight:600;letter-spacing:-0.6px;color:#FFFFFF"><sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><span style="display:block">Transporte Executivo,</span><span style="display:block">Corporativo e para Eventos</span><span style="display:block">no Rio de Janeiro</span></sc-if><sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}"><span style="display:block;white-space:nowrap">Transporte Executivo,</span><span style="display:block;white-space:nowrap">Corporativo e para</span><span style="display:block;white-space:nowrap">Eventos no Rio de Janeiro</span></sc-if></h1>
+      <p style="margin:{{ hm.pm }};font-size:{{ hm.pfs }};line-height:1.65;color:#C9D1E0;max-width:520px;text-wrap:pretty"><sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">Você define o destino e o horário. A RioMar cuida do veículo, do motorista e da organização de cada deslocamento.</sc-if><sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}"><span style="display:block;white-space:nowrap">Você define o destino e o horário.</span><span style="display:block;white-space:nowrap">A RioMar cuida do veículo, do motorista</span><span style="display:block;white-space:nowrap">e da organização de cada deslocamento.</span></sc-if></p>
+      <div style="margin-top:{{ hm.bm }};display:flex;flex-wrap:wrap;gap:10px">
+        <a href="https://wa.me/5521988650909?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener" style="background:#E8571E;color:#FFFFFF;font-size:15.5px;font-weight:600;padding:0 26px;height:{{ hm.bh }};display:flex;align-items:center;gap:10px;border-radius:8px" style-hover="background:#D44C15;color:#FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg><span>Solicitar orçamento</span></a>
+        <a href="#frota" style="border:1px solid rgba(255,255,255,0.55);color:#FFFFFF;font-size:15.5px;font-weight:500;padding:0 28px;height:{{ hm.bh }};display:flex;align-items:center;border-radius:8px" style-hover="border-color:#FFFFFF;background:rgba(255,255,255,0.06);color:#FFFFFF">Conheça a frota</a>
+      </div>
+    </div>
+
+  </div>
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style="position:absolute;left:0;right:0;bottom:-1px;width:100%;height:clamp(48px,7vw,100px);display:block" aria-hidden="true"><path d="M0 70 C 360 10, 900 0, 1440 64 L1440 100 L0 100 Z" fill="#FFFFFF"></path></svg>
+</section>
+
+<!-- SEÇÃO 2 — SERVIÇOS -->
+<section id="servicos" data-screen-label="02 Serviços" style="background:#FFFFFF;padding:clamp(56px,8vw,112px) clamp(20px,4vw,40px) clamp(64px,9vw,128px);scroll-margin-top:76px">
+  <div style="max-width:1200px;margin:0 auto">
+    <div data-reveal="" style="max-width:720px">
+      <div style="font-size:12.5px;letter-spacing:2.5px;font-weight:500;color:#E8571E;text-transform:uppercase">Serviços</div>
+      <h2 style="margin:14px 0 0;font-size:clamp(28px,3vw,40px);line-height:1.18;font-weight:600;letter-spacing:-0.5px;color:#1F3FA0;text-wrap:balance">Transporte planejado para cada tipo de demanda</h2>
+      <svg width="52" height="10" viewBox="0 0 52 10" style="display:block;margin-top:16px" aria-hidden="true"><path d="M2 7 C 16 1, 34 1, 50 6" stroke="#E8571E" stroke-width="2.5" fill="none" stroke-linecap="round"></path></svg>
+      <p style="margin:20px 0 0;font-size:17px;line-height:1.65;color:#4A5262;text-wrap:pretty">Da rotina da sua empresa ao maior dia do seu evento, organizamos o deslocamento para que você se preocupe só com o que importa.</p>
+    </div>
+
+    <div id="frota" data-reveal="" style="margin-top:56px;scroll-margin-top:100px;display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,40px);align-items:stretch">
+      <div style="flex:3 1 520px;min-width:0;display:flex;flex-direction:column;order:{{ fleetStageOrder }}">
+        <div role="img" aria-label="{{ activeAlt }}" style="position:relative;aspect-ratio:16/10;background:#F5F6F8;border-radius:12px;overflow:hidden">
+          <div style="position:absolute;left:12%;right:12%;bottom:11%;height:9%;border-radius:50%;background:radial-gradient(closest-side,rgba(10,22,51,0.28),rgba(10,22,51,0.10) 60%,rgba(10,22,51,0) 100%);filter:blur(6px)"></div>
+          <img src="assets/frota/executivo.webp" alt="" aria-hidden="true" decoding="async" loading="eager" style="position:absolute;left:7%;right:7%;top:9%;bottom:13%;width:86%;height:78%;object-fit:contain;object-position:center bottom;opacity:{{ op0 }};transition:{{ fade }}">
+          <img src="assets/frota/blindado.webp" alt="" aria-hidden="true" decoding="async" loading="eager" style="position:absolute;left:7%;right:7%;top:9%;bottom:13%;width:86%;height:78%;object-fit:contain;object-position:center bottom;opacity:{{ op1 }};transition:{{ fade }}">
+          <img src="assets/frota/van.webp" alt="" aria-hidden="true" decoding="async" loading="eager" style="position:absolute;left:7%;right:7%;top:9%;bottom:13%;width:86%;height:78%;object-fit:contain;object-position:center bottom;opacity:{{ op2 }};transition:{{ fade }}">
+          <img src="assets/frota/micro.webp" alt="" aria-hidden="true" decoding="async" loading="eager" style="position:absolute;left:7%;right:7%;top:9%;bottom:13%;width:86%;height:78%;object-fit:contain;object-position:center bottom;opacity:{{ op3 }};transition:{{ fade }}">
+        </div>
+        <div style="margin-top:28px;display:grid">
+          <sc-for list="{{ fleet }}" as="v" hint-placeholder-count="0">
+            <div aria-hidden="{{ v.hidden }}" style="grid-area:1 / 1;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 32px;opacity:{{ v.opacity }};visibility:{{ v.visibility }};transition:{{ fade }}">
+              <div style="flex:1 1 300px;min-width:0">
+                <div style="font-size:13px;font-weight:600;letter-spacing:2px;color:#E8571E">{{ v.n }}</div>
+                <h3 style="margin:8px 0 0;font-size:clamp(22px,2.2vw,28px);font-weight:600;letter-spacing:-0.3px;color:#0A1633">{{ v.name }}</h3>
+                <p style="margin:8px 0 0;font-size:16px;line-height:1.6;color:#4A5262;max-width:480px;text-wrap:pretty">{{ v.desc }}</p>
+              </div>
+              <a href="{{ v.wa }}" target="_blank" rel="noopener" tabIndex="{{ v.tab }}" style="flex-shrink:0;background:#1F3FA0;color:#FFFFFF;font-size:15px;font-weight:600;height:52px;padding:0 24px;display:flex;align-items:center;gap:10px;border-radius:8px" style-hover="background:#16307D;color:#FFFFFF">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+                <span>Consultar disponibilidade</span>
+              </a>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="flex:2 1 340px;min-width:0;display:flex;flex-direction:column;order:{{ fleetPickOrder }}">
+        <div id="frota-selecao" style="font-size:12px;letter-spacing:2.5px;font-weight:500;color:#5B6472;text-transform:uppercase">Selecione a categoria</div>
+        <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+          <div role="group" aria-labelledby="frota-selecao" style="margin-top:14px;display:flex;flex-direction:column;gap:12px;flex:1">
+            <sc-for list="{{ fleet }}" as="v" hint-placeholder-count="0">
+              <button type="button" onClick="{{ v.select }}" aria-pressed="{{ v.active }}" style="flex:1;min-height:96px;width:100%;display:flex;align-items:center;gap:18px;padding:14px 20px;background:#FFFFFF;border:1px solid {{ v.border }};box-shadow:{{ v.ring }};border-radius:12px;cursor:pointer;text-align:left;transition:border-color 200ms,box-shadow 200ms;outline-offset:3px" style-hover="border-color:#1F3FA0">
+                <span style="font-size:12.5px;font-weight:600;letter-spacing:1.5px;color:#8E97A6;width:22px;flex-shrink:0">{{ v.n }}</span>
+                <span style="width:104px;height:60px;flex-shrink:0;display:flex;align-items:center;justify-content:center"><sc-if value="{{ v.is0 }}" hint-placeholder-val="{{ false }}"><img src="assets/frota/executivo-thumb.webp" alt="" style="max-width:100%;max-height:100%;object-fit:contain"></sc-if><sc-if value="{{ v.is1 }}" hint-placeholder-val="{{ false }}"><img src="assets/frota/blindado-thumb.webp" alt="" style="max-width:100%;max-height:100%;object-fit:contain"></sc-if><sc-if value="{{ v.is2 }}" hint-placeholder-val="{{ false }}"><img src="assets/frota/van-thumb.webp" alt="" style="max-width:100%;max-height:100%;object-fit:contain"></sc-if><sc-if value="{{ v.is3 }}" hint-placeholder-val="{{ false }}"><img src="assets/frota/micro-thumb.webp" alt="" style="max-width:100%;max-height:100%;object-fit:contain"></sc-if></span>
+                <span style="flex:1;min-width:0;font-size:16px;font-weight:{{ v.weight }};color:#0A1633">{{ v.name }}</span>
+                <span aria-hidden="true" style="width:20px;height:20px;flex-shrink:0;border-radius:50%;border:1.5px solid {{ v.border }};display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;background:#1F3FA0;opacity:{{ v.opacity }};transition:{{ fade }}"></span></span>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+          <div role="group" aria-labelledby="frota-selecao" style="margin:14px -20px 0;padding:2px 20px 8px;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none">
+            <sc-for list="{{ fleet }}" as="v" hint-placeholder-count="0">
+              <button type="button" onClick="{{ v.select }}" aria-pressed="{{ v.active }}" style="flex:0 0 168px;scroll-snap-align:start;display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:14px;background:#FFFFFF;border:1px solid {{ v.border }};box-shadow:{{ v.ring }};border-radius:12px;cursor:pointer;text-align:left">
+                <span style="width:100%;display:flex;justify-content:space-between;align-items:center">
+                  <span style="font-size:12px;font-weight:600;letter-spacing:1.5px;color:#8E97A6">{{ v.n }}</span>
+                  <span aria-hidden="true" style="width:18px;height:18px;border-radius:50%;border:1.5px solid {{ v.border }};display:flex;align-items:center;justify-content:center"><span style="width:8px;height:8px;border-radius:50%;background:#1F3FA0;opacity:{{ v.opacity }}"></span></span>
+                </span>
+                <span style="width:100%;height:64px;display:flex;align-items:center;justify-content:center"><sc-if value="{{ v.is0 }}" hint-placeholder-val="{{ false }}"><img src="assets/frota/executivo-thumb.webp" alt="" style="max-width:100%;max-height:100%;object-fit:contain"></sc-if><sc-if value="{{ v.is1 }}" hint-placeholder-val="{{ false }}"><img src="assets/frota/blindado-thumb.webp" alt="" style="max-width:100%;max-height:100%;object-fit:contain"></sc-if><sc-if value="{{ v.is2 }}" hint-placeholder-val="{{ false }}"><img src="assets/frota/van-thumb.webp" alt="" style="max-width:100%;max-height:100%;object-fit:contain"></sc-if><sc-if value="{{ v.is3 }}" hint-placeholder-val="{{ false }}"><img src="assets/frota/micro-thumb.webp" alt="" style="max-width:100%;max-height:100%;object-fit:contain"></sc-if></span>
+                <span style="font-size:14.5px;font-weight:{{ v.weight }};color:#0A1633;line-height:1.3">{{ v.name }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:24px">
+      <article data-reveal="" style="background:#F7F8FA;border:1px solid #E3E6EC;border-radius:12px;padding:28px 28px 20px;display:flex;flex-direction:column">
+        <h3 style="margin:0;font-size:19px;font-weight:600;color:#0A1633;line-height:1.3">Traslados Aeroporto–Hotel</h3>
+        <p style="margin:10px 0 0;font-size:15.5px;line-height:1.6;color:#4A5262;flex:1">Recepção no Galeão e no Santos Dumont, com destino a hotéis, escritórios e centros de convenções.</p>
+        <a href="https://wa.me/5521988650909?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20Traslado%20Aeroporto%E2%80%93Hotel." target="_blank" rel="noopener" style="margin-top:16px;font-size:14.5px;font-weight:500;color:#1F3FA0;min-height:44px;display:flex;align-items:center">Pedir orçamento →</a>
+      </article>
+      <article data-reveal="" style="background:#F7F8FA;border:1px solid #E3E6EC;border-radius:12px;padding:28px 28px 20px;display:flex;flex-direction:column">
+        <h3 style="margin:0;font-size:19px;font-weight:600;color:#0A1633;line-height:1.3">Logística de Transporte</h3>
+        <p style="margin:10px 0 0;font-size:15.5px;line-height:1.6;color:#4A5262;flex:1">Planejamento completo dos deslocamentos de pessoas em operações e eventos de grande porte.</p>
+        <a href="https://wa.me/5521988650909?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20Log%C3%ADstica%20de%20Transporte." target="_blank" rel="noopener" style="margin-top:16px;font-size:14.5px;font-weight:500;color:#1F3FA0;min-height:44px;display:flex;align-items:center">Pedir orçamento →</a>
+      </article>
+    </div>
+
+    <div data-reveal="" style="margin-top:48px;border-top:1px solid #E3E6EC;padding-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:32px;align-items:center">
+      <div>
+        <div style="font-size:12px;letter-spacing:2.5px;font-weight:500;color:#5B6472;text-transform:uppercase">Turismo e excursões</div>
+        <h3 style="margin:10px 0 0;font-size:22px;font-weight:600;color:#0A1633">Passeios e viagens em grupo</h3>
+        <p style="margin:10px 0 0;font-size:15.5px;line-height:1.6;color:#4A5262">Transporte para excursões, famílias e empresas com destino a:</p>
+        <div style="margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:15px;font-weight:500;color:#0A1633">
+          <span>Rio de Janeiro</span><span style="width:6px;height:6px;border-radius:50%;background:#3DB5E6"></span>
+          <span>Búzios</span><span style="width:6px;height:6px;border-radius:50%;background:#3DB5E6"></span>
+          <span>Angra dos Reis</span><span style="width:6px;height:6px;border-radius:50%;background:#3DB5E6"></span>
+          <span>Itacuruçá</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,120px),1fr));gap:12px">
+        <figure style="margin:0"><div style="position:relative;aspect-ratio:4/3"><image-slot id="dest-rio" src="assets/destinos/rio.webp" shape="rounded" radius="8" placeholder="Rio de Janeiro" style="filter:saturate(0.85) brightness(0.92)"></image-slot></div><figcaption style="margin-top:8px;font-size:12.5px;color:#5B6472">Rio de Janeiro</figcaption></figure>
+        <figure style="margin:0"><div style="position:relative;aspect-ratio:4/3"><image-slot id="dest-buzios" src="assets/destinos/buzios.webp" shape="rounded" radius="8" placeholder="Búzios" style="filter:saturate(0.85) brightness(0.92)"></image-slot></div><figcaption style="margin-top:8px;font-size:12.5px;color:#5B6472">Búzios</figcaption></figure>
+        <figure style="margin:0"><div style="position:relative;aspect-ratio:4/3"><image-slot id="dest-angra" src="assets/destinos/angra.webp" shape="rounded" radius="8" placeholder="Angra dos Reis" style="filter:saturate(0.85) brightness(0.92)"></image-slot></div><figcaption style="margin-top:8px;font-size:12.5px;color:#5B6472">Angra dos Reis</figcaption></figure>
+        <figure style="margin:0"><div style="position:relative;aspect-ratio:4/3"><image-slot id="dest-itacuruca" src="assets/destinos/itacuruca.webp" shape="rounded" radius="8" placeholder="Itacuruçá" style="filter:saturate(0.85) brightness(0.92)"></image-slot></div><figcaption style="margin-top:8px;font-size:12.5px;color:#5B6472">Itacuruçá</figcaption></figure>
+      </div>
+    </div>
+
+    <div data-reveal="" style="margin-top:56px;background:#F7F8FA;border-radius:12px;padding:clamp(24px,3vw,36px) clamp(24px,4vw,44px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px">
+      <p style="margin:0;font-size:clamp(18px,1.8vw,22px);font-weight:500;color:#0A1633">Tem um evento ou uma operação para planejar?</p>
+      <a href="https://wa.me/5521988650909?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20equipe%20comercial%20sobre%20um%20evento%2Fopera%C3%A7%C3%A3o." target="_blank" rel="noopener" style="background:#E8571E;color:#FFFFFF;font-size:15px;font-weight:600;padding:0 24px;height:50px;display:flex;align-items:center;gap:10px;border-radius:8px" style-hover="background:#D44C15;color:#FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg><span>Falar com a equipe comercial</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 3 — CLIENTES (CONDICIONAL) — VALIDAR: logos autorizados -->
+<sc-if value="{{ showClientes }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="03 Clientes" style="background:#FFFFFF;padding:0 clamp(20px,4vw,40px) clamp(64px,9vw,112px)">
+    <div style="max-width:1200px;margin:0 auto;border-top:1px solid #E3E6EC;padding-top:clamp(56px,7vw,96px)">
+      <div style="font-size:12.5px;letter-spacing:2.5px;font-weight:500;color:#E8571E;text-transform:uppercase">Clientes</div>
+      <h2 style="margin:14px 0 0;font-size:clamp(28px,3vw,40px);line-height:1.18;font-weight:600;letter-spacing:-0.5px;color:#1F3FA0;text-wrap:balance">Empresas e organizadores que confiam na RioMar</h2>
+      <svg width="52" height="10" viewBox="0 0 52 10" style="display:block;margin-top:16px" aria-hidden="true"><path d="M2 7 C 16 1, 34 1, 50 6" stroke="#E8571E" stroke-width="2.5" fill="none" stroke-linecap="round"></path></svg>
+      <sc-if value="{{ showMarkers }}" hint-placeholder-val="{{ true }}"><div style="margin-top:16px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7A4B00;background:#FFF3D6;border:1px dashed #E0B44C;padding:3px 7px;border-radius:4px">VALIDAR: exibir somente logos confirmados e autorizados</span></div></sc-if>
+      <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:16px">
+        <div style="position:relative;height:72px;filter:grayscale(1);opacity:0.7;transition:filter 250ms,opacity 250ms" style-hover="filter:none;opacity:1"><image-slot id="cliente-1" shape="rect" fit="contain" placeholder="Logo cliente"></image-slot></div>
+        <div style="position:relative;height:72px;filter:grayscale(1);opacity:0.7;transition:filter 250ms,opacity 250ms" style-hover="filter:none;opacity:1"><image-slot id="cliente-2" shape="rect" fit="contain" placeholder="Logo cliente"></image-slot></div>
+        <div style="position:relative;height:72px;filter:grayscale(1);opacity:0.7;transition:filter 250ms,opacity 250ms" style-hover="filter:none;opacity:1"><image-slot id="cliente-3" shape="rect" fit="contain" placeholder="Logo cliente"></image-slot></div>
+        <div style="position:relative;height:72px;filter:grayscale(1);opacity:0.7;transition:filter 250ms,opacity 250ms" style-hover="filter:none;opacity:1"><image-slot id="cliente-4" shape="rect" fit="contain" placeholder="Logo cliente"></image-slot></div>
+        <div style="position:relative;height:72px;filter:grayscale(1);opacity:0.7;transition:filter 250ms,opacity 250ms" style-hover="filter:none;opacity:1"><image-slot id="cliente-5" shape="rect" fit="contain" placeholder="Logo cliente"></image-slot></div>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<!-- SEÇÃO 5 — COMO FUNCIONA -->
+<section id="como-funciona" data-screen-label="05 Como funciona" style="background:#FFFFFF;padding:clamp(64px,9vw,128px) clamp(20px,4vw,40px);scroll-margin-top:76px">
+  <div style="max-width:1200px;margin:0 auto">
+    <div data-reveal="" style="max-width:720px">
+      <div style="font-size:12.5px;letter-spacing:2.5px;font-weight:500;color:#E8571E;text-transform:uppercase">Como funciona</div>
+      <h2 style="margin:14px 0 0;font-size:clamp(28px,3vw,40px);line-height:1.18;font-weight:600;letter-spacing:-0.5px;color:#1F3FA0">Contratar é simples</h2>
+      <svg width="52" height="10" viewBox="0 0 52 10" style="display:block;margin-top:16px" aria-hidden="true"><path d="M2 7 C 16 1, 34 1, 50 6" stroke="#E8571E" stroke-width="2.5" fill="none" stroke-linecap="round"></path></svg>
+    </div>
+    <ol data-reveal="" style="list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:40px 32px">
+      <li style="display:flex;flex-direction:column">
+        <div style="display:flex;align-items:center;gap:20px"><span style="font-size:56px;font-weight:500;line-height:1;color:#E8571E;letter-spacing:-1px">1</span><span style="flex:1;height:1px;background:#D9DEE6"></span></div>
+        <h3 style="margin:24px 0 0;font-size:20px;font-weight:600;color:#0A1633">Conte sua necessidade</h3>
+        <p style="margin:8px 0 0;font-size:16px;line-height:1.6;color:#4A5262">Data, trajeto e número de passageiros.</p>
+      </li>
+      <li style="display:flex;flex-direction:column">
+        <div style="display:flex;align-items:center;gap:20px"><span style="font-size:56px;font-weight:500;line-height:1;color:#E8571E;letter-spacing:-1px">2</span><span style="flex:1;height:1px;background:#D9DEE6"></span></div>
+        <h3 style="margin:24px 0 0;font-size:20px;font-weight:600;color:#0A1633">Receba a proposta</h3>
+        <p style="margin:8px 0 0;font-size:16px;line-height:1.6;color:#4A5262">Com o veículo indicado para o seu caso.</p>
+      </li>
+      <li style="display:flex;flex-direction:column">
+        <div style="display:flex;align-items:center;gap:20px"><span style="font-size:56px;font-weight:500;line-height:1;color:#E8571E;letter-spacing:-1px">3</span><span style="flex:1;height:1px;background:#D9DEE6"></span></div>
+        <h3 style="margin:24px 0 0;font-size:20px;font-weight:600;color:#0A1633">Confirme e pronto</h3>
+        <p style="margin:8px 0 0;font-size:16px;line-height:1.6;color:#4A5262">Nós cuidamos do restante.</p>
+      </li>
+    </ol>
+    <div data-reveal="" style="margin-top:56px;display:flex;flex-wrap:wrap;align-items:center;gap:16px">
+      <a href="https://wa.me/5521988650909?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener" style="background:#E8571E;color:#FFFFFF;font-size:15px;font-weight:600;padding:0 26px;height:52px;display:flex;align-items:center;gap:10px;border-radius:8px" style-hover="background:#D44C15;color:#FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg><span>Solicitar orçamento</span></a>
+      <sc-if value="{{ showMarkers }}" hint-placeholder-val="{{ true }}"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7A4B00;background:#FFF3D6;border:1px dashed #E0B44C;padding:3px 7px;border-radius:4px">VALIDAR: prazo médio de resposta — incluir somente se confirmado</span></sc-if>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 6 — DIFERENCIAIS -->
+<section data-screen-label="06 Diferenciais" style="position:relative;background:#0A1633;color:#FFFFFF;padding:clamp(64px,9vw,128px) clamp(20px,4vw,40px) clamp(110px,13vw,180px);overflow:hidden">
+  <div style="max-width:1200px;margin:0 auto">
+    <div data-reveal="" style="max-width:760px">
+      <div style="font-size:12.5px;letter-spacing:2.5px;font-weight:500;color:#E8571E;text-transform:uppercase">Diferenciais</div>
+      <h2 style="margin:14px 0 0;font-size:clamp(28px,3vw,40px);line-height:1.18;font-weight:600;letter-spacing:-0.5px;color:#FFFFFF;text-wrap:balance">Por que empresas e organizadores escolhem a RioMar</h2>
+      <svg width="52" height="10" viewBox="0 0 52 10" style="display:block;margin-top:16px" aria-hidden="true"><path d="M2 7 C 16 1, 34 1, 50 6" stroke="#E8571E" stroke-width="2.5" fill="none" stroke-linecap="round"></path></svg>
+    </div>
+    <div style="margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:1px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden">
+      <div data-reveal="" style="background:#0A1633;padding:36px 28px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3DB5E6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4.5"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>
+        <h3 style="margin:24px 0 0;font-size:18px;font-weight:600;color:#FFFFFF">Um ponto de contato</h3>
+        <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:#B9C3D6">Uma equipe acompanha seu serviço do orçamento à execução.</p>
+      </div>
+      <div data-reveal="" style="background:#0A1633;padding:36px 28px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3DB5E6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2.5"></circle><circle cx="18" cy="5" r="2.5"></circle><path d="M8.5 19h8a3.5 3.5 0 0 0 0-7h-9a3.5 3.5 0 0 1 0-7h8"></path></svg>
+        <h3 style="margin:24px 0 0;font-size:18px;font-weight:600;color:#FFFFFF">Planejamento sob medida</h3>
+        <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:#B9C3D6">Veículos, rotas e horários definidos a partir da sua demanda, não de um pacote padrão.</p>
+      </div>
+      <div data-reveal="" style="background:#0A1633;padding:36px 28px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3DB5E6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"></circle><circle cx="12" cy="12" r="2"></circle><path d="M12 14v7.5M10 12H2.5M14 12h7.5"></path></svg>
+        <h3 style="margin:24px 0 0;font-size:18px;font-weight:600;color:#FFFFFF">Motoristas profissionais</h3>
+        <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:#B9C3D6">Condução preparada para atendimento executivo e transporte de grupos.</p>
+        <sc-if value="{{ showMarkers }}" hint-placeholder-val="{{ true }}"><div style="margin-top:12px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7A4B00;background:#FFF3D6;border:1px dashed #E0B44C;padding:3px 7px;border-radius:4px">VALIDAR: treinamento/habilitação</span></div></sc-if>
+      </div>
+      <div data-reveal="" style="background:#0A1633;padding:36px 28px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3DB5E6" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="M3 11h18"></path><circle cx="7.5" cy="19.5" r="1.5"></circle><circle cx="16.5" cy="19.5" r="1.5"></circle></svg>
+        <h3 style="margin:24px 0 0;font-size:18px;font-weight:600;color:#FFFFFF">Frota completa</h3>
+        <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:#B9C3D6">Do carro executivo ao micro-ônibus, uma única empresa para todo tipo de deslocamento.</p>
+      </div>
+    </div>
+  </div>
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style="position:absolute;left:0;right:0;bottom:-1px;width:100%;height:clamp(48px,7vw,100px);display:block" aria-hidden="true"><path d="M0 70 C 360 10, 900 0, 1440 64 L1440 100 L0 100 Z" fill="#FFFFFF"></path></svg>
+</section>
+
+<!-- SEÇÃO 7 — SOBRE -->
+<section id="sobre" data-screen-label="07 Sobre" style="background:#FFFFFF;padding:clamp(48px,7vw,96px) clamp(20px,4vw,40px) clamp(64px,9vw,128px);scroll-margin-top:76px">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,88px);align-items:center">
+    <div data-reveal="">
+      <div style="font-size:12.5px;letter-spacing:2.5px;font-weight:500;color:#E8571E;text-transform:uppercase">Sobre</div>
+      <h2 style="margin:14px 0 0;font-size:clamp(28px,3vw,40px);line-height:1.18;font-weight:600;letter-spacing:-0.5px;color:#0A1633">Sobre a <span style="color:#E8571E">Rio</span><span style="color:#1F3FA0">mar</span></h2>
+      <svg width="52" height="10" viewBox="0 0 52 10" style="display:block;margin-top:16px" aria-hidden="true"><path d="M2 7 C 16 1, 34 1, 50 6" stroke="#E8571E" stroke-width="2.5" fill="none" stroke-linecap="round"></path></svg>
+      <div style="margin-top:24px;display:flex;flex-direction:column;gap:16px;font-size:17px;line-height:1.7;color:#4A5262">
+        <p style="margin:0;text-wrap:pretty">A RioMar Transportes atende empresas, organizadores de eventos e clientes particulares com transporte executivo, corporativo e turístico no Rio de Janeiro.</p>
+        <p style="margin:0;text-wrap:pretty">Nosso trabalho começa antes do embarque: entender a demanda, indicar o veículo certo e organizar cada detalhe para que o deslocamento aconteça como planejado.</p>
+        <p style="margin:0;text-wrap:pretty">Conhecemos as rotas, os horários e as particularidades do trânsito do Rio — e planejamos cada deslocamento com isso em mente.</p>
+      </div>
+      <sc-if value="{{ showStats }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:36px;padding-top:28px;border-top:1px solid #E3E6EC;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+          <div><div style="font-size:36px;font-weight:500;color:#1F3FA0;letter-spacing:-0.5px">00</div><div style="margin-top:4px;font-size:13.5px;color:#5B6472">Anos de atuação</div></div>
+          <div><div style="font-size:36px;font-weight:500;color:#1F3FA0;letter-spacing:-0.5px">00</div><div style="margin-top:4px;font-size:13.5px;color:#5B6472">Veículos na frota</div></div>
+          <div><div style="font-size:36px;font-weight:500;color:#1F3FA0;letter-spacing:-0.5px">00</div><div style="margin-top:4px;font-size:13.5px;color:#5B6472">Atendimentos realizados</div></div>
+        </div>
+        <sc-if value="{{ showMarkers }}" hint-placeholder-val="{{ true }}"><div style="margin-top:14px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7A4B00;background:#FFF3D6;border:1px dashed #E0B44C;padding:3px 7px;border-radius:4px">VALIDAR: anos de atuação, tamanho da frota, atendimentos realizados</span></div></sc-if>
+      </sc-if>
+    </div>
+    <div data-reveal="" style="position:relative;height:clamp(320px,38vw,520px)">
+      <image-slot id="sobre-operacao" shape="rounded" radius="12" placeholder="Foto real: operação ou frota RioMar" style="filter:saturate(0.85) brightness(0.9)"></image-slot>
+      <sc-if value="{{ showMarkers }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;top:12px;right:12px;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7A4B00;background:#FFF3D6;border:1px dashed #E0B44C;padding:3px 7px;border-radius:4px;pointer-events:none">SUBSTITUIR: foto real</span></sc-if>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 8 — FAQ -->
+<section data-screen-label="08 FAQ" style="background:#F7F8FA;padding:clamp(64px,9vw,128px) clamp(20px,4vw,40px)">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,72px);align-items:flex-start">
+    <div data-reveal="" style="flex:1 1 280px">
+      <div style="font-size:12.5px;letter-spacing:2.5px;font-weight:500;color:#E8571E;text-transform:uppercase">Dúvidas</div>
+      <h2 style="margin:14px 0 0;font-size:clamp(28px,3vw,40px);line-height:1.18;font-weight:600;letter-spacing:-0.5px;color:#1F3FA0">Perguntas frequentes</h2>
+      <svg width="52" height="10" viewBox="0 0 52 10" style="display:block;margin-top:16px" aria-hidden="true"><path d="M2 7 C 16 1, 34 1, 50 6" stroke="#E8571E" stroke-width="2.5" fill="none" stroke-linecap="round"></path></svg>
+    </div>
+    <div data-reveal="" style="flex:2 1 520px;min-width:0;border-top:1px solid #D9DEE6">
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+        <div style="border-bottom:1px solid #D9DEE6">
+          <button onClick="{{ f.toggle }}" aria-expanded="{{ f.open }}" style="width:100%;min-height:64px;padding:18px 0;background:transparent;border:0;display:flex;align-items:center;justify-content:space-between;gap:24px;text-align:left;cursor:pointer;color:#0A1633;font-size:17px;font-weight:500">
+            <span>{{ f.q }}</span>
+            <span style="flex-shrink:0;width:28px;height:28px;border:1px solid #C9D0DB;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:400;color:#1F3FA0">{{ f.sign }}</span>
+          </button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:0 52px 24px 0">
+              <p style="margin:0;font-size:16px;line-height:1.65;color:#4A5262">{{ f.a }}</p>
+              <sc-if value="{{ showMarkers }}" hint-placeholder-val="{{ true }}"><div style="margin-top:10px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7A4B00;background:#FFF3D6;border:1px dashed #E0B44C;padding:3px 7px;border-radius:4px">VALIDAR: resposta a confirmar com a empresa</span></div></sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO 9 — CONTATO -->
+<section id="contato" data-screen-label="09 Contato" style="background:#FFFFFF;padding:clamp(64px,9vw,128px) clamp(20px,4vw,40px);scroll-margin-top:76px">
+  <div style="max-width:1200px;margin:0 auto">
+    <div data-reveal="" style="max-width:720px">
+      <div style="font-size:12.5px;letter-spacing:2.5px;font-weight:500;color:#E8571E;text-transform:uppercase">Contato</div>
+      <h2 style="margin:14px 0 0;font-size:clamp(28px,3vw,40px);line-height:1.18;font-weight:600;letter-spacing:-0.5px;color:#1F3FA0">Vamos planejar seu transporte?</h2>
+      <svg width="52" height="10" viewBox="0 0 52 10" style="display:block;margin-top:16px" aria-hidden="true"><path d="M2 7 C 16 1, 34 1, 50 6" stroke="#E8571E" stroke-width="2.5" fill="none" stroke-linecap="round"></path></svg>
+      <p style="margin:20px 0 0;font-size:17px;line-height:1.65;color:#4A5262">Informe data, trajeto e número de passageiros. Nossa equipe retorna com uma proposta.</p>
+    </div>
+
+    <div style="margin-top:48px;display:flex;flex-wrap:wrap;gap:24px;align-items:stretch">
+      <div data-reveal="" style="flex:1 1 300px;background:#0A1633;color:#FFFFFF;border-radius:12px;padding:clamp(28px,3vw,40px);display:flex;flex-direction:column">
+        <div style="font-size:12px;letter-spacing:2.5px;font-weight:500;color:#AEB8CC;text-transform:uppercase">Particulares e pedidos rápidos</div>
+        <h3 style="margin:14px 0 0;font-size:22px;font-weight:600;line-height:1.3">Fale direto com a equipe de reservas</h3>
+        <p style="margin:12px 0 0;font-size:15.5px;line-height:1.6;color:#B9C3D6;flex:1">Envie data, trajeto e número de passageiros pelo WhatsApp.</p>
+        <a href="https://wa.me/5521988650909?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener" style="margin-top:28px;background:#E8571E;color:#FFFFFF;font-size:15px;font-weight:600;height:54px;padding:0 20px;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:8px" style-hover="background:#D44C15;color:#FFFFFF">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+          <span>Solicitar orçamento pelo WhatsApp</span>
+        </a>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:8px;font-size:14px;color:#C9D1E0;flex-wrap:wrap">
+          <span>(21) 98865-0909</span>
+          <sc-if value="{{ showMarkers }}" hint-placeholder-val="{{ true }}"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7A4B00;background:#FFF3D6;border:1px dashed #E0B44C;padding:2px 6px;border-radius:4px">VALIDAR: número ativo</span></sc-if>
+        </div>
+      </div>
+
+      <div data-reveal="" style="flex:2 1 480px;min-width:0;background:#F7F8FA;border:1px solid #E3E6EC;border-radius:12px;padding:clamp(24px,3vw,40px)">
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submit }}" style="display:flex;flex-direction:column">
+            <div style="font-size:12px;letter-spacing:2.5px;font-weight:500;color:#5B6472;text-transform:uppercase">Formulário para empresas</div>
+            <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px">
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500;color:#0A1633">Nome<input required="" name="nome" autocomplete="name" style="height:48px;border:1px solid #D2D8E2;border-radius:8px;padding:0 14px;font-size:15px;background:#FFFFFF;color:#2E3440;outline-color:#1F3FA0"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500;color:#0A1633">Empresa<input name="empresa" autocomplete="organization" style="height:48px;border:1px solid #D2D8E2;border-radius:8px;padding:0 14px;font-size:15px;background:#FFFFFF;color:#2E3440;outline-color:#1F3FA0"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500;color:#0A1633">E-mail<input required="" type="email" name="email" autocomplete="email" style="height:48px;border:1px solid #D2D8E2;border-radius:8px;padding:0 14px;font-size:15px;background:#FFFFFF;color:#2E3440;outline-color:#1F3FA0"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500;color:#0A1633">Telefone<input required="" type="tel" name="telefone" autocomplete="tel" style="height:48px;border:1px solid #D2D8E2;border-radius:8px;padding:0 14px;font-size:15px;background:#FFFFFF;color:#2E3440;outline-color:#1F3FA0"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500;color:#0A1633">Tipo de serviço
+                <select required="" name="servico" style="height:48px;border:1px solid #D2D8E2;border-radius:8px;padding:0 12px;font-size:15px;background:#FFFFFF;color:#2E3440;outline-color:#1F3FA0">
+                  <option value="">Selecione</option>
+                  <option>Transporte Executivo</option>
+                  <option>Transporte Corporativo e de Funcionários</option>
+                  <option>Transporte para Eventos</option>
+                  <option>Traslado Aeroporto–Hotel</option>
+                  <option>Logística de Transporte</option>
+                  <option>Turismo e Excursões</option>
+                  <option>Outro</option>
+                </select>
+              </label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500;color:#0A1633">Data<input type="date" name="data" style="height:48px;border:1px solid #D2D8E2;border-radius:8px;padding:0 14px;font-size:15px;background:#FFFFFF;color:#2E3440;outline-color:#1F3FA0"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500;color:#0A1633">Número de passageiros<input type="number" min="1" name="passageiros" style="height:48px;border:1px solid #D2D8E2;border-radius:8px;padding:0 14px;font-size:15px;background:#FFFFFF;color:#2E3440;outline-color:#1F3FA0"></label>
+              <label style="grid-column:1 / -1;display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500;color:#0A1633">Mensagem<textarea name="mensagem" rows="4" placeholder="Trajeto, horários e outras informações" style="border:1px solid #D2D8E2;border-radius:8px;padding:12px 14px;font-size:15px;line-height:1.5;background:#FFFFFF;color:#2E3440;resize:vertical;outline-color:#1F3FA0"></textarea></label>
+            </div>
+            <div style="margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+              <span style="font-size:13px;color:#5B6472;max-width:300px">Ao enviar, sua solicitação abre no WhatsApp da equipe de reservas. Sem custo e sem compromisso.</span>
+              <button type="submit" style="background:#E8571E;color:#FFFFFF;border:0;font-size:15px;font-weight:600;height:52px;padding:0 28px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px" style-hover="background:#D44C15"><svg width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg><span>Enviar solicitação</span></button>
+            </div>
+          </form>
+        </sc-if>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="min-height:100%;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:24px 0">
+            <div style="width:48px;height:48px;border-radius:50%;border:1.5px solid #1F3FA0;display:flex;align-items:center;justify-content:center">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3FA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+            </div>
+            <h3 style="margin:24px 0 0;font-size:24px;font-weight:600;color:#0A1633">Solicitação pronta para envio</h3>
+            <p style="margin:10px 0 0;font-size:16px;line-height:1.65;color:#4A5262;max-width:440px">Sua solicitação foi aberta no WhatsApp. Confirme o envio da mensagem por lá e nossa equipe retorna com uma proposta.</p>
+            <button onClick="{{ reset }}" style="margin-top:28px;background:transparent;border:1px solid #1F3FA0;color:#1F3FA0;font-size:14.5px;font-weight:500;height:46px;padding:0 22px;border-radius:8px;cursor:pointer" style-hover="background:#1F3FA0;color:#FFFFFF">Enviar nova solicitação</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div data-reveal="" style="margin-top:56px;padding-top:40px;border-top:1px solid #E3E6EC;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:32px">
+      <div>
+        <div style="font-size:12px;letter-spacing:2.5px;font-weight:500;color:#E8571E;text-transform:uppercase">Comercial</div>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:4px;font-size:15.5px;line-height:1.6">
+          <a href="tel:+552130488013" style="color:#0A1633;font-weight:500">(21) 3048-8013</a>
+          <a href="mailto:comercial@riomartransporte.com.br" style="color:#1F3FA0;overflow-wrap:anywhere">comercial@riomartransporte.com.br</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:2.5px;font-weight:500;color:#E8571E;text-transform:uppercase">Reservas</div>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:4px;font-size:15.5px;line-height:1.6">
+          <a href="tel:+5521988650909" style="color:#0A1633;font-weight:500">(21) 98865-0909</a>
+          <a href="mailto:reservas@riomartransporte.com.br" style="color:#1F3FA0;overflow-wrap:anywhere">reservas@riomartransporte.com.br</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:2.5px;font-weight:500;color:#E8571E;text-transform:uppercase">Endereço</div>
+        <p style="margin:12px 0 0;font-size:15.5px;line-height:1.6;color:#4A5262">Rua Mariz e Barros, 72, Sala 201<br>Praça da Bandeira · Rio de Janeiro/RJ<br>CEP 20270-006</p>
+        <sc-if value="{{ showMarkers }}" hint-placeholder-val="{{ true }}"><div style="margin-top:8px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7A4B00;background:#FFF3D6;border:1px dashed #E0B44C;padding:2px 6px;border-radius:4px">VALIDAR: endereço</span></div></sc-if>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer data-screen-label="10 Rodapé" style="position:relative;background:#0A1633;color:#C9D1E0;padding:clamp(64px,8vw,96px) clamp(20px,4vw,40px) 32px;overflow:hidden">
+  <div style="position:absolute;right:-160px;bottom:-90px;width:760px;height:430px;opacity:0.06;pointer-events:none">
+    <img src="assets/logo-riomar-branco.webp" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:contain;object-position:right bottom;display:block">
+  </div>
+  <div style="position:relative;max-width:1200px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:40px">
+      <div style="grid-column:span 1;min-width:0">
+        <span style="display:inline-flex;align-items:center;background:#FFFFFF;border-radius:10px;padding:10px 16px"><img src="assets/logo-riomar.webp" alt="Riomar Transportes" style="height:64px;width:auto;display:block"></span>
+        <div style="margin-top:18px;font-size:20px;font-weight:600;letter-spacing:-0.3px"><span style="color:#E8571E">Rio</span><span style="color:#5B7BE0">mar</span><span style="color:#FFFFFF"> Transportes</span></div>
+        <p style="margin:10px 0 0;font-size:14.5px;line-height:1.6;color:#AEB8CC;max-width:280px">Transporte executivo, corporativo e para eventos no Rio de Janeiro.</p>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:2.5px;font-weight:500;color:#FFFFFF;text-transform:uppercase">Navegação</div>
+        <nav style="margin-top:14px;display:flex;flex-direction:column">
+          <a href="#servicos" style="color:#C9D1E0;font-size:14.5px;min-height:36px;display:flex;align-items:center" style-hover="color:#FFFFFF">Serviços</a>
+          <a href="#frota" style="color:#C9D1E0;font-size:14.5px;min-height:36px;display:flex;align-items:center" style-hover="color:#FFFFFF">Frota</a>
+          <a href="#como-funciona" style="color:#C9D1E0;font-size:14.5px;min-height:36px;display:flex;align-items:center" style-hover="color:#FFFFFF">Como funciona</a>
+          <a href="#sobre" style="color:#C9D1E0;font-size:14.5px;min-height:36px;display:flex;align-items:center" style-hover="color:#FFFFFF">Sobre</a>
+          <a href="#contato" style="color:#C9D1E0;font-size:14.5px;min-height:36px;display:flex;align-items:center" style-hover="color:#FFFFFF">Contato</a>
+        </nav>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:2.5px;font-weight:500;color:#FFFFFF;text-transform:uppercase">Contatos</div>
+        <div style="margin-top:14px;display:flex;flex-direction:column;gap:14px;font-size:14.5px;line-height:1.55">
+          <div><div style="color:#8E9AB2;font-size:13px">Comercial</div><a href="tel:+552130488013" style="color:#FFFFFF">(21) 3048-8013</a><br><a href="mailto:comercial@riomartransporte.com.br" style="color:#C9D1E0;overflow-wrap:anywhere" style-hover="color:#FFFFFF">comercial@riomartransporte.com.br</a></div>
+          <div><div style="color:#8E9AB2;font-size:13px">Reservas</div><a href="tel:+5521988650909" style="color:#FFFFFF">(21) 98865-0909</a><br><a href="mailto:reservas@riomartransporte.com.br" style="color:#C9D1E0;overflow-wrap:anywhere" style-hover="color:#FFFFFF">reservas@riomartransporte.com.br</a></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:2.5px;font-weight:500;color:#FFFFFF;text-transform:uppercase">Endereço</div>
+        <p style="margin:14px 0 0;font-size:14.5px;line-height:1.6;color:#C9D1E0">Rua Mariz e Barros, 72, Sala 201<br>Praça da Bandeira<br>Rio de Janeiro/RJ · CEP 20270-006</p>
+        <sc-if value="{{ showMarkers }}" hint-placeholder-val="{{ true }}"><div style="margin-top:10px;display:flex;flex-direction:column;align-items:flex-start;gap:6px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7A4B00;background:#FFF3D6;border:1px dashed #E0B44C;padding:2px 6px;border-radius:4px">VALIDAR: endereço</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#7A4B00;background:#FFF3D6;border:1px dashed #E0B44C;padding:2px 6px;border-radius:4px">VALIDAR: perfis de redes sociais</span></div></sc-if>
+      </div>
+    </div>
+    <div style="margin-top:56px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;font-size:13px;color:#8E9AB2">
+      <span style="letter-spacing:3px;font-size:12px;text-transform:uppercase;color:#AEB8CC">Rio de Janeiro — RJ</span>
+      <div style="display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center">
+        <span>© {{ year }} RioMar Transportes</span>
+        <span style="color:#3DB5E6">·</span>
+        <a href="#" style="color:#AEB8CC" style-hover="color:#FFFFFF">Política de Privacidade</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+  <a href="https://wa.me/5521988650909?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener" aria-label="Contato pelo WhatsApp" style="position:fixed;right:16px;bottom:16px;z-index:40;width:52px;height:52px;border-radius:50%;background:#E8571E;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(10,22,51,0.18)">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+  </a>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showMarkers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Revisão&quot;},&quot;showClientes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Conteúdo condicional&quot;},&quot;showStats&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Conteúdo condicional&quot;},&quot;formState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;formulário&quot;,&quot;enviado&quot;],&quot;default&quot;:&quot;formulário&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Estados&quot;}}">
+class Component extends DCLogic {
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1280, menuOpen: false, openFaq: 0, sent: false };
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth, menuOpen: window.innerWidth < 1080 ? this.state.menuOpen : false });
+    window.addEventListener('resize', this.onResize);
+    this.onScroll = () => { const s = window.scrollY > 8; if (s !== this.state.scrolled) this.setState({ scrolled: s }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true }); this.onScroll();
+    requestAnimationFrame(() => {
+      const els = Array.from(document.querySelectorAll('[data-reveal]'));
+      if (!('IntersectionObserver' in window)) return;
+      this.io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this.io.unobserve(e.target); }
+        });
+      }, { threshold: 0.08 });
+      els.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight) return;
+        el.style.opacity = '0'; el.style.transform = 'translateY(16px)';
+        el.style.transition = 'opacity 450ms ease, transform 450ms ease';
+        this.io.observe(el);
+      });
+    });
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onScroll); this.io && this.io.disconnect(); }
+  renderVals() {
+    const isMobile = this.state.w < 900;
+    const faqData = [
+      ['Com quanta antecedência devo solicitar o transporte?', 'Quanto antes, melhor para reservarmos o veículo indicado. Para eventos e grupos, recomendamos entrar em contato assim que a data estiver definida.'],
+      ['Vocês atendem empresas com faturamento e nota fiscal?', 'Sim. Atendemos empresas com proposta formal, faturamento e emissão de nota fiscal.'],
+      ['Atendem fora da cidade do Rio de Janeiro?', 'Sim. Além da capital, realizamos viagens para destinos como Búzios, Angra dos Reis e Itacuruçá. Consulte outros trajetos com a equipe.'],
+      ['O orçamento tem custo?', 'Não. O orçamento é gratuito e sem compromisso.'],
+      ['O motorista está incluído no serviço?', 'Sim. Todos os serviços são realizados com motorista profissional.']
+    ];
+    const sent = this.state.sent || this.props.formState === 'enviado';
+    const reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fleetData = [
+      ['executivo', 'Carros Executivos', 'Para deslocamentos individuais e atendimento a executivos e convidados.', 'um carro executivo', 'Carro executivo preto, sedã Ford Fusion'],
+      ['blindado', 'Carros Blindados', 'Para deslocamentos que exigem um nível adicional de proteção. Consulte disponibilidade.', 'um carro blindado', 'Carro blindado preto, sedã Chrysler 300'],
+      ['van', 'Vans Executivas', 'Para equipes e grupos que precisam chegar juntos.', 'uma van executiva', 'Van executiva branca Fiat Ducato com a marca Riomar'],
+      ['micro', 'Micro-ônibus', 'Para grupos maiores, eventos e excursões.', 'um micro-ônibus', 'Micro-ônibus prata']
+    ];
+    const vi = this.state.vehicle ?? 0;
+    const fleet = fleetData.map(([k, name, desc, art, alt], i) => {
+      const on = vi === i;
+      return {
+        n: '0' + (i + 1), name, desc, alt,
+        img: `assets/frota/${k}.webp`, thumb: `assets/frota/${k}-thumb.webp`,
+        wa: 'https://wa.me/5521988650909?text=' + encodeURIComponent(`Olá! Gostaria de consultar a disponibilidade de ${art} da Riomar.`),
+        active: on, hidden: !on, is0: i === 0, is1: i === 1, is2: i === 2, is3: i === 3, opacity: on ? 1 : 0, visibility: on ? 'visible' : 'hidden', tab: on ? 0 : -1,
+        border: on ? '#1F3FA0' : '#E3E6EC', ring: on ? '0 0 0 1px #1F3FA0, 0 6px 18px rgba(31,63,160,0.08)' : 'none', weight: on ? 600 : 500,
+        select: () => this.setState({ vehicle: i })
+      };
+    });
+    return {
+      isMobile, isDesktop: !isMobile,
+      headerBg: this.state.scrolled ? 'rgba(255,255,255,0.78)' : '#FFFFFF', headerLine: this.state.scrolled ? 'rgba(255,255,255,0.6)' : '#E3E6EC', headerShadow: this.state.scrolled ? '0 6px 24px rgba(10,22,51,0.10)' : 'none',
+      heroScrim: this.state.w < 900 ? 'linear-gradient(180deg, rgba(10,22,51,0.55) 0%, rgba(10,22,51,0.35) 45%, rgba(10,22,51,0) 62%)' : this.state.w < 1240 ? 'linear-gradient(90deg, rgba(10,22,51,0.9) 0%, rgba(10,22,51,0.82) 50%, rgba(10,22,51,0.2) 82%, rgba(10,22,51,0) 100%)' : 'linear-gradient(90deg, rgba(10,22,51,0.8) 0%, rgba(10,22,51,0.6) 38%, rgba(10,22,51,0) 60%)',
+      heroPos: this.state.w < 900 ? 'center bottom' : '68% center', heroAlign: this.state.w < 900 ? 'flex-start' : 'center', heroMinH: this.state.w < 900 ? 'max(100svh, 780px)' : '88vh',
+      hm: this.state.w < 900 ? { pad: 'calc(76px + 28px) 20px 120px', h1m: '12px 0 0', pm: '14px 0 0', pfs: 'min(16px, calc((100vw - 40px) / 22.5))', h1fs: 'min(30px, calc((100vw - 40px) / 15.2))', bm: '22px', bh: '48px' } : { pad: 'calc(76px + clamp(40px,7vw,96px)) clamp(20px,4vw,40px) clamp(110px,12vw,170px)', h1m: '20px 0 0', pm: '24px 0 0', pfs: 'clamp(16px,1.4vw,18px)', h1fs: 'clamp(26px,3vw,40px)', bm: '36px', bh: '52px' },
+      fleetStageOrder: this.state.w < 900 ? 2 : 1, fleetPickOrder: this.state.w < 900 ? 1 : 2,
+      heroDesk: this.state.w >= 900, heroMob: this.state.w < 900,
+      navMobile: this.state.w < 1080, navDesktop: this.state.w >= 1080,
+      menuVisible: this.state.w < 1080 && this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      showMarkers: this.props.showMarkers ?? true,
+      showClientes: this.props.showClientes ?? false,
+      showStats: this.props.showStats ?? false,
+      faqs: faqData.map(([q, a], i) => ({
+        q, a, open: this.state.openFaq === i, sign: this.state.openFaq === i ? '–' : '+',
+        toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i }))
+      })),
+      fleet, activeAlt: fleet[vi].alt, op0: vi === 0 ? 1 : 0, op1: vi === 1 ? 1 : 0, op2: vi === 2 ? 1 : 0, op3: vi === 3 ? 1 : 0, fade: reduce ? 'none' : 'opacity 300ms ease',
+      sent, notSent: !sent,
+      submit: (e) => {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const g = k => (fd.get(k) || '').toString().trim();
+        const d = g('data');
+        const data = d ? d.split('-').reverse().join('/') : '';
+        const rows = [['Nome', g('nome')], ['Empresa', g('empresa')], ['E-mail', g('email')], ['Telefone', g('telefone')], ['Serviço', g('servico')], ['Data', data], ['Passageiros', g('passageiros')], ['Mensagem', g('mensagem')]]
+          .filter(r => r[1]).map(r => `*${r[0]}:* ${r[1]}`);
+        const text = ['Olá, gostaria de solicitar um orçamento.', '', ...rows].join('\n');
+        window.open('https://wa.me/5521988650909?text=' + encodeURIComponent(text), '_blank', 'noopener');
+        this.setState({ sent: true });
+      },
+      reset: () => this.setState({ sent: false }),
+      year: new Date().getFullYear()
+    };
+  }
+}
+</script>
+</body>
+</html>
